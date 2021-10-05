@@ -43,13 +43,13 @@ $(document).ready(function(){
                         <div class="col-md-8">
                             <div data-id=${result[i]._id} class="poemEntry edit">
                                     <div class="row">
-                                        <div class="col">
+                                        <div class="col-md-1">
                                             <p> ${result[i].orderId} </p>
                                         </div>
-                                        <div class="col">
+                                        <div class="col-md-7">
                                             <h5> ${result[i].title} </h5>
                                         </div>
-                                        <div class="col">
+                                        <div class="col-md-4">
                                             <p> ${result[i].datePosted} </p>
                                         </div>
                                     </div>

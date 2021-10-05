@@ -1,13 +1,6 @@
 .activeBtn {
     background-color: orange;
 }
-#inactiveBtn{
-    background-color: lightgoldenrodyellow;
-}
-
-.mealBtn {
-    background-color: lightgray;
-}
 
 body {
     background-color: lightgray;
@@ -32,12 +25,16 @@ button {
     margin: 0px 20px 10px 20px
 }
 
+.homeBtn {
+    margin: 50px
+}
+
 .poemEntry {
     background-color: white;
     border: 2px solid blue;
     border-radius: 30px;
     margin: 20px;
-    padding: 30px
+    padding: 15px 0px 5px 50px
 }
 
 .poemEntry:hover {
@@ -57,5 +54,5 @@ button {
     background-color: red;
     color: white;
     width: 80px;
-    margin: 60px 0px 50px 0px
+    margin: 35px 40px 10px 50px
 }
