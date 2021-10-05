@@ -25,7 +25,6 @@ if (process.env.NODE_ENV === "production") {
 app.use(cors({ origin : [ "http://localhost:3000/"]}));
 app.use(express.static(path.join(__dirname, 'public')));
 
-
 // Start the API server
 app.listen(PORT, function() {
   console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
@@ -76,6 +75,7 @@ app.post("/login/", (req, res) => {
   })
 })
 
+//Create user
 app.post("/create/profile/", async(req, res) => {
   try {
     const salt = await bcrypt.genSalt();
@@ -88,6 +88,7 @@ app.post("/create/profile/", async(req, res) => {
   }
 });
 
+//Create poem
 app.post("/home/poem/", (req, res) => {
   try {
     const poem = { 
@@ -104,12 +105,14 @@ app.post("/home/poem/", (req, res) => {
   
 });
 
+//Get All Poems
 app.get("/poems/allpoems/", async (req, res) => {
   await db.Poems.find()
   .then(result => res.json(result))
   .catch(err => console.log(err))
 })
 
+//Route to Edit Poem Page
 app.get("/poems/:id", async (req, res) => {
   const token = req.cookies.token
   if (!token) {
@@ -119,17 +122,20 @@ app.get("/poems/:id", async (req, res) => {
   }
 })
 
+//Get poem to update
 app.get("/poems/update/:id", async (req, res) => {
   await db.Poems.findById(req.params.id)
   .then(result => res.json(result))
 })
 
+//Submit update Poem
 app.put("/poems/submitupdate/:id", async (req, res) => {
   await db.Poems.findByIdAndUpdate(req.params.id, { title: req.body.title, text: req.body.text })
   .then(console.log(`Successfully Updated Item ${req.params.id}`))
   .catch(err => console.log(err))
 })
 
+//Delete Poem
 app.delete("/poems/delete/:id", async (req, res) => {
   await db.Poems.findByIdAndDelete(req.params.id)
   .then(result => console.log(`Record id ${result._id} deleted`))

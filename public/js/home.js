@@ -1,11 +1,13 @@
 $(document).ready(function(){
+    
     $("#submitPoem").on("click", function(e) {
         e.preventDefault();
         const sumbit = {
             title: $("#poemTitle").val(),
+            orderId: $("#poemOrderId").val(),
             datePosted: $("#poemDate").val(),
             text: $("#poemText").val(),
-            additionalInfo: "Additional Info here"
+            additionalInfo: $("#poemAdditionalInfo").val()
             }
 
         $.ajax({
@@ -75,6 +77,7 @@ $(document).ready(function(){
                 })
                 window.location.reload()
             })
+            $("#poemOrderId").attr("value", result.length + 1)
         },
         error: function(error) {
             console.log(error)
