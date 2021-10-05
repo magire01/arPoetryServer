@@ -59,6 +59,6 @@ $(document).ready(function(){
 
     $("#home").on("click", function(e) {
         e.preventDefault();
-        window.location.replace(`/home/`)
+        window.location.replace(`/poems/`)
     })
 })

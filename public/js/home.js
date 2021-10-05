@@ -12,7 +12,7 @@ $(document).ready(function(){
 
         $.ajax({
             type: "POST",
-            url: "/home/poem/",
+            url: "/poems/create/",
             data: {
                 title: submit.title,
                 orderId: submit.orderId,

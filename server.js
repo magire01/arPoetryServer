@@ -40,16 +40,6 @@ app.get('/', (req, res) =>{
     res.sendFile(__dirname + '/index.html');
 });
 
-//summary page route
-app.get("/home/", (req, res) => {
-  const token = req.cookies.token
-  if (!token) {
-    res.send(401)
-  } else {
-    res.sendFile(__dirname + '/public/pages/home.html')
-  }
-})
-
 //login
 app.post("/login/", (req, res) => {
   db.Profile.findOne({ user: req.body.user })
@@ -61,7 +51,7 @@ app.post("/login/", (req, res) => {
       expiresIn: jwtExpirySeconds
       })
       res.cookie("token", accessToken, { maxAge: jwtExpirySeconds * 1000 })
-      app.get("/home", (req, res) => {
+      app.get("/poems/", (req, res) => {
         const token = req.cookies.token
   if (!token) {
     res.send(401)
@@ -88,12 +78,24 @@ app.post("/create/profile/", async(req, res) => {
   }
 });
 
+//summary page route
+app.get("/poems/", (req, res) => {
+  const token = req.cookies.token
+  if (!token) {
+    res.send(401)
+  } else {
+    res.sendFile(__dirname + '/public/pages/home.html')
+  }
+})
+
+
+/////////POEMS////////
 //Create poem
-app.post("/home/poem/", (req, res) => {
+app.post("/poems/create/", (req, res) => {
   try {
     const poem = { 
     title: req.body.title, 
-    orderId: req.body.orderId,
+    orderId: Number(req.body.orderId),
     datePosted: req.body.datePosted,
     text: req.body.text,
     additionalInfo: req.body.additionalInfo
@@ -131,7 +133,7 @@ app.get("/poems/update/:id", async (req, res) => {
 
 //Submit update Poem
 app.put("/poems/submitupdate/:id", async (req, res) => {
-  await db.Poems.findByIdAndUpdate(req.params.id, { title: req.body.title, orderId: req.body.orderId, datePosted: req.body.datePosted, text: req.body.text, additionalInfo: req.body.additionalInfo })
+  await db.Poems.findByIdAndUpdate(req.params.id, { title: req.body.title, orderId: Number(req.body.orderId), datePosted: req.body.datePosted, text: req.body.text, additionalInfo: req.body.additionalInfo })
   .then(console.log(`Successfully Updated Item ${req.params.id}`))
   .catch(err => console.log(err))
 })

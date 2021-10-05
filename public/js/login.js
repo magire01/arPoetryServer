@@ -15,7 +15,7 @@ $(document).ready(function(){
             success: function(result) {
                 console.log(result)
                 sessionStorage.setItem("username", userLogin)
-                window.location.replace("/home/")
+                window.location.replace("/poems/")
             },
             error: function(err) {
                 console.log(err)

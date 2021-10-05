@@ -6,7 +6,7 @@ const poemSchema = new Schema({
     datePosted: { type: String, required: true },
     text: { type: String, required: true },
     additionalInfo: { type: String, required: false},
-    orderId: { type: String, required: true}
+    orderId: { type: Number, required: true}
   });
 
 const Poems = mongoose.model("Poems", poemSchema);
