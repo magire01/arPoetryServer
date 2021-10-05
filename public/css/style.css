@@ -10,7 +10,7 @@
 }
 
 body {
-    background-color: lightyellow;
+    background-color: lightgoldenrodyellow;
 }
 
 .foodRow {
@@ -63,4 +63,29 @@ button {
 .submitPoem {
     width: 100px;
     margin: 10px 50% 10px 50%
+}
+
+.poemText {
+    height: 200px;
+    width: 1000px;
+    margin: 0px 20px 10px 20px
+}
+
+.edit {
+    background-color: blue;
+    color: white;
+    width: 100px;
+    margin: 10px 10px 10px 10px
+}
+
+.delete {
+    background-color: red;
+    color: white;
+    width: 100px;
+    margin: 10px 40px 10px 40px
+}
+
+.poemEntry {
+    margin: 20px;
+    padding: 30px
 }

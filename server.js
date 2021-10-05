@@ -108,7 +108,7 @@ app.post("/home/poem/", (req, res) => {
 
 //Get All Poems
 app.get("/poems/allpoems/", async (req, res) => {
-  await db.Poems.find()
+  await db.Poems.find().sort({orderId: 'descending'})
   .then(result => res.json(result))
   .catch(err => console.log(err))
 })

@@ -40,11 +40,19 @@ $(document).ready(function(){
             for(let i = 0; i < result.length; i++) {
                 
                 $("#poems").append(`
-            <div class="card">
-                
-                <h5> ${result[i].title} </h5>
-                <p> ${result[i].datePosted} </p>
+            <div class="card poemEntry">
                 <div class="container">
+                    <div class="row">
+                        <div class="col">
+                            <h5> ${result[i].title} </h5>
+                        </div>
+                        <div class="col">
+                            <p> ${result[i].datePosted} </p>
+                        </div>
+                        <div class="col">
+                            <p> OrderID: ${result[i].orderId} </p>
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col">
                             <button data-id=${result[i]._id} class="edit">Edit</button>
