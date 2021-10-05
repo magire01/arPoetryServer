@@ -14,24 +14,48 @@
   </head>
   <body>
     <div class="container">
+      <div class="row">
+        <h3>Andrew Rueter Poetry</h3>
+      </div>
+      <form>
         <div class="row">
-            <h1>Andrew Rueter Poetry</h1>
-        </div>
+            <div class="col-md-2">
+              <p>Title</p>
+            </div>
+            <div class="col-md-4">
+              <input id="poemTitle" />
+            </div>
+            <div class="col-md-2">
+              <p>Order Id</p>
+            </div>
+            <div class="col-md-1">
+              <input id="poemOrderId" class="orderInput"/>
+            </div>
         <div class="row">
-          <form>
-            <p>Poem Name</p>
-            <input id="poemTitle" />
-            <p>Order Id</p>
-            <input id="poemOrderId"/>
+          <div class="col-md-2">
             <p>Poem Date</p>
+          </div>
+          <div class="col-md-4">
             <input id="poemDate"/>
+          </div>
+          <div class="col-md-2">
+            <p>Additional Info</p>
+          </div>
+          <div class="col-md-4">
+            <input id="poemAdditionalInfo" />
+          </div>
+        </div>
+            
+            
+            
             <p>Text</p>
             <textarea id="poemText"></textarea>
-            <p>Additional Info</p>
-            <input id="poemAdditionalInfo" />
-            <button id="submitPoem">Submit</button>
-        </form>
+            
+            <div class="row">
+              <button id="submitPoem" class="submitPoem">Submit</button>
+            </div>
         </div>
+      </form>
         <div class="row" id="poems">
 
         </div>

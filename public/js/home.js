@@ -2,7 +2,7 @@ $(document).ready(function(){
     
     $("#submitPoem").on("click", function(e) {
         e.preventDefault();
-        const sumbit = {
+        const submit = {
             title: $("#poemTitle").val(),
             orderId: $("#poemOrderId").val(),
             datePosted: $("#poemDate").val(),
@@ -14,10 +14,11 @@ $(document).ready(function(){
             type: "POST",
             url: "/home/poem/",
             data: {
-                title: sumbit.title,
-                datePosted: sumbit.datePosted,
-                text: sumbit.text,
-                additionalInfo: sumbit.additionalInfo
+                title: submit.title,
+                orderId: submit.orderId,
+                datePosted: submit.datePosted,
+                text: submit.text,
+                additionalInfo: submit.additionalInfo
             },
             success: function(result) {
                 console.log(result)

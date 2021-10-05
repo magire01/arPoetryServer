@@ -55,3 +55,12 @@ body {
 button {
     width: 200px
 }
+
+.orderInput {
+    width: 50px
+}
+
+.submitPoem {
+    width: 100px;
+    margin: 10px 50% 10px 50%
+}

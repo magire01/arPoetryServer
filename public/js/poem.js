@@ -6,12 +6,14 @@ $(document).ready(function(){
             $("#updatePoem").append(`
             <p> Title: </p>
             <input value=${result.title} id="titleValue"/>
+            <p> Order Id </p>
+            <input value=${result.orderId} id="orderIdValue"/>
             <p> Date Posted </p>
-            <input value=${result.datePosted} />
+            <input value=${result.datePosted} id="datePostedValue"/>
             <p> Text: </p> 
             <textarea id="textValue">${result.text}</textarea>
             <p> Additional Info </p>
-            <input value=${result.additionalInfo} />
+            <input value=${result.additionalInfo} id="additionalInfoValue"/>
             <button id="submitChange">Submit Changes</button>
             `)
             $("#submitChange").on("click", function(e) {
@@ -21,10 +23,14 @@ $(document).ready(function(){
                     url: `/poems/submitupdate/${result._id}`,
                     data: {
                         title: $("#titleValue").val(),
-                        text: $("#textValue").val()
+                        orderId: $("#orderIdValue").val(),
+                        datePosted: $("#datePostedValue").val(),
+                        text: $("#textValue").val(),
+                        additionalInfo: $("#additionalInfo").val()
                     }
                 })
             });
+            $("#poemOrderId").attr("value", result.orderId)
         },
         error: function(error) {
             console.log(error)
