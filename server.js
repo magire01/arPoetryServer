@@ -131,7 +131,7 @@ app.get("/poems/update/:id", async (req, res) => {
 
 //Submit update Poem
 app.put("/poems/submitupdate/:id", async (req, res) => {
-  await db.Poems.findByIdAndUpdate(req.params.id, { title: req.body.title, text: req.body.text })
+  await db.Poems.findByIdAndUpdate(req.params.id, { title: req.body.title, orderId: req.body.orderId, datePosted: req.body.datePosted, text: req.body.text, additionalInfo: req.body.additionalInfo })
   .then(console.log(`Successfully Updated Item ${req.params.id}`))
   .catch(err => console.log(err))
 })
