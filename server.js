@@ -1,0 +1,137 @@
+const express = require("express");
+const app = express();
+const cors = require("cors");
+const path = require("path");
+const mongoose = require("mongoose");
+const db = require("./models");
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const cookieParser = require('cookie-parser');
+
+app.use(cookieParser());
+require('dotenv').config()
+const PORT = process.env.PORT || 3000;
+
+// Define middleware here
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
+// Serve up static assets (usually on heroku)
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+}
+
+// Add routes, both API and view
+app.use(cors({ origin : [ "http://localhost:3000/"]}));
+app.use(express.static(path.join(__dirname, 'public')));
+
+
+// Start the API server
+app.listen(PORT, function() {
+  console.log(`🌎  ==> API Server now listening on PORT ${PORT}!`);
+});
+
+mongoose.connect(process.env.URI,
+  { useNewUrlParser: true })
+  .then(console.log('Connected to Database'))
+  .catch(err => console.log(err))
+        
+// home page route
+app.get('/', (req, res) =>{
+    res.sendFile(__dirname + '/index.html');
+});
+
+//summary page route
+app.get("/home/", (req, res) => {
+  const token = req.cookies.token
+  if (!token) {
+    res.send(401)
+  } else {
+    res.sendFile(__dirname + '/public/pages/home.html')
+  }
+})
+
+//login
+app.post("/login/", (req, res) => {
+  db.Profile.findOne({ user: req.body.user })
+  .then(async user => {
+    if (await bcrypt.compare(req.body.password, user.password)) {
+      const jwtExpirySeconds = 300
+      const accessToken = jwt.sign({ user }, process.env.TOKEN_SECRET, {
+      algorithm: "HS256",
+      expiresIn: jwtExpirySeconds
+      })
+      res.cookie("token", accessToken, { maxAge: jwtExpirySeconds * 1000 })
+      app.get("/home", (req, res) => {
+        const token = req.cookies.token
+  if (!token) {
+    res.send(401)
+  } else {
+    res.sendFile(__dirname + '/public/pages/home.html')
+  }
+      })
+      res.json({ message: "Invalid Credentials" });
+      console.log("Invalid Credentials")
+    }
+  })
+})
+
+app.post("/create/profile/", async(req, res) => {
+  try {
+    const salt = await bcrypt.genSalt();
+    const hashedPassword = await bcrypt.hash(req.body.password, salt);
+    const user = { user: req.body.user, password: hashedPassword }
+    db.Profile.create(user)
+    .then(console.log(user))
+  } catch {
+    res.status(201).send()
+  }
+});
+
+app.post("/home/poem/", (req, res) => {
+  try {
+    const poem = { 
+    title: req.body.title, 
+    datePosted: req.body.datePosted,
+    text: req.body.text,
+    additionalInfo: req.body.additionalInfo
+    }
+    db.Poems.create(poem)
+    .then(console.log("Poem submitted"))
+  } catch {
+    res.status(201).send();
+  }
+  
+});
+
+app.get("/poems/allpoems/", async (req, res) => {
+  await db.Poems.find()
+  .then(result => res.json(result))
+  .catch(err => console.log(err))
+})
+
+app.get("/poems/:id", async (req, res) => {
+  const token = req.cookies.token
+  if (!token) {
+    res.send(401)
+  } else {
+    res.sendFile(__dirname + '/public/pages/poem.html')
+  }
+})
+
+app.get("/poems/update/:id", async (req, res) => {
+  await db.Poems.findById(req.params.id)
+  .then(result => res.json(result))
+})
+
+app.put("/poems/submitupdate/:id", async (req, res) => {
+  await db.Poems.findByIdAndUpdate(req.params.id, { title: req.body.title, text: req.body.text })
+  .then(console.log(`Successfully Updated Item ${req.params.id}`))
+  .catch(err => console.log(err))
+})
+
+app.delete("/poems/delete/:id", async (req, res) => {
+  await db.Poems.findByIdAndDelete(req.params.id)
+  .then(result => console.log(`Record id ${result._id} deleted`))
+  .catch(err => console.log(err))
+})
