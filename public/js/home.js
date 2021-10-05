@@ -40,29 +40,26 @@ $(document).ready(function(){
             for(let i = 0; i < result.length; i++) {
                 
                 $("#poems").append(`
-            <div class="card poemEntry">
-                <div class="container">
-                    <div class="row">
-                        <div class="col">
-                            <h5> ${result[i].title} </h5>
+                        <div class="col-md-8">
+                            <div data-id=${result[i]._id} class="poemEntry edit">
+                                    <div class="row">
+                                        <div class="col">
+                                            <p> ${result[i].orderId} </p>
+                                        </div>
+                                        <div class="col">
+                                            <h5> ${result[i].title} </h5>
+                                        </div>
+                                        <div class="col">
+                                            <p> ${result[i].datePosted} </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col">
-                            <p> ${result[i].datePosted} </p>
-                        </div>
-                        <div class="col">
-                            <p> OrderID: ${result[i].orderId} </p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <button data-id=${result[i]._id} class="edit">Edit</button>
-                        </div>
-                        <div class="col">
+                        <div class="col-md-4">
                             <button data-id=${result[i]._id} class="delete">Delete</button>
                         </div>
-                    </div>
-                </div>
-            </div>`)
+                    `)
             }
 
             $(".edit").on("click", function(e) {

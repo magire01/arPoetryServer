@@ -10,46 +10,7 @@
 }
 
 body {
-    background-color: lightgoldenrodyellow;
-}
-
-.foodRow {
-    background-color: lightgoldenrodyellow;
-    color: darkslategray;
-    margin-top: 5%;
-    width: 20%;
-    margin-left: 40%;
-    margin-right: 40%;
-}
-
-.addItemBtn {
-    background-color: orange;
-    color: white;
-    font-weight: bold;
-    width: 20%;
-    margin-left: 40%;
-    margin-right: 40%;
-}
-
-.addItemForm {
-    background-color: lightyellow;
-    margin-top: 3%;
-    width: 40%;
-    margin-left: 30%;
-    margin-right: 30%;
-}
-
-.centerText {
-    text-align: center;
-}
-
-.navBack {
-    background-color: orange;
-    color: white;
-}
-
-.card {
-    margin: 20px
+    background-color: lightgray;
 }
 
 button {
@@ -71,21 +32,30 @@ button {
     margin: 0px 20px 10px 20px
 }
 
-.edit {
+.poemEntry {
+    background-color: white;
+    border: 2px solid blue;
+    border-radius: 30px;
+    margin: 20px;
+    padding: 30px
+}
+
+.poemEntry:hover {
+    background-color: blue;
+    color: white;
+    cursor: pointer;
+}
+
+/* .edit {
     background-color: blue;
     color: white;
     width: 100px;
     margin: 10px 10px 10px 10px
-}
+} */
 
 .delete {
     background-color: red;
     color: white;
-    width: 100px;
-    margin: 10px 40px 10px 40px
-}
-
-.poemEntry {
-    margin: 20px;
-    padding: 30px
+    width: 80px;
+    margin: 60px 0px 50px 0px
 }
