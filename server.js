@@ -188,12 +188,24 @@ app.post("/films/create/", (req, res) => {
       overallScore: req.body.overallScore,
       song: req.body.song,
       image: req.body.image
-  
     }
     db.Films.create(film)
     .then(console.log("Film submitted"))
   } catch {
     res.status(201).send();
   }
-  
 });
+
+//Get All Films
+app.get("/films/allfilms/", async (req, res) => {
+  await db.Films.find().sort({orderId: 'descending'})
+  .then(result => res.json(result))
+  .catch(err => console.log(err))
+})
+
+//Delete Poem
+app.delete("/films/delete/:id", async (req, res) => {
+  await db.Films.findByIdAndDelete(req.params.id)
+  .then(result => console.log(`Record id ${result._id} deleted`))
+  .catch(err => console.log(err))
+})
