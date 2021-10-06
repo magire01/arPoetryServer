@@ -6,6 +6,6 @@ $(document).ready(function(){
 
     $("#filmsPage").on("click", function(e) {
         e.preventDefault();
-        console.log("Films Page");
+        window.location.replace("/films/")
     }) 
 });

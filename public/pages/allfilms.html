@@ -8,56 +8,135 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/style.css" />
-    <base href="/poems">
+    <base href="/films">
 
     <title>Test Site</title>
   </head>
   <body>
     <div class="container">
-    <div>
-        <button id="homeBtn">Home</button>
-    </div>
-      <div class="row">
-        <h3>Films</h3>
+      <div>
+          <button id="homeBtn">Home</button>
       </div>
-      <form>
         <div class="row">
+          <h3>Films</h3>
+        </div>
+        <form>
+          <div class="row">
+              <div class="col-md-2">
+                <p>Title</p>
+              </div>
+              <div class="col-md-4">
+                <input id="filmTitle" />
+              </div>
+              <div class="col-md-2">
+                <p>Directed By</p>
+              </div>
+              <div class="col-md-4">
+                <input id="filmDirectedBy" />
+              </div>
+              <div class="col-md-2">
+                <p>Date Posted</p>
+              </div>
+              <div class="col-md-4">
+                <input id="filmDate"/>
+              </div>
+              <div class="col-md-2">
+                <p>Order Id</p>
+              </div>
+              <div class="col-md-4">
+                <input id="filmOrderId" class="orderInput"/>
+              </div>
+              <div class="col-md-2">
+                <p>Summary</p>
+              </div>
+              <div class="col-md-10">
+                <textarea id="filmSummary"></textarea>
+              </div>
+          </div>
+             
+          <div class="row">
+            <div class="col-md-3">
+              <p>Relatability</p>
+            </div>
+            <div class="col-md-9">
+              <input id="relatabilityScore" />
+            </div>
+            <textarea id="relatability" class="poemText"></textarea>
+          </div>
+
+          <div class="row">
+            <div class="col-md-3">
+              <p>Execution</p>
+            </div>
+            <div class="col-md-9">
+              <input id="executionScore" />
+            </div>
+            <textarea id="execution" class="poemText"></textarea>
+          </div>
+
+          <div class="row">
+            <div class="col-md-3">
+              <p>Context</p>
+            </div>
+            <div class="col-md-9">
+              <input id="contextScore" />
+            </div>
+            <textarea id="context" class="poemText"></textarea>
+          </div>
+
+          <div class="row">
+            <div class="col-md-3">
+              <p>Subtext</p>
+            </div>
+            <div class="col-md-9">
+              <input id="subtextScore" />
+            </div>
+            <textarea id="subtext" class="poemText"></textarea>
+          </div>
+
+          <div class="row">
+            <div class="col-md-3">
+              <p>Emotion</p>
+            </div>
+            <div class="col-md-9">
+              <input id="emotionScore" />
+            </div>
+            <textarea id="emotion" class="poemText"></textarea>
+          </div>
+
+          <div class="row">
+            <div class="col-md-3">
+              <p>Overall Score</p>
+            </div>
+            <div class="col-md-9">
+              <input id="overallScore" />
+            </div>
+          </div>
+
+          <div class="row">
             <div class="col-md-2">
-              <p>Title</p>
+              <p>Song</p>
             </div>
             <div class="col-md-4">
-              <input id="poemTitle" />
+              <input id="filmSong" />
             </div>
+          </div>
+
+          <div class="row">
             <div class="col-md-2">
-              <p>Order Id</p>
+              <p>Image URL</p>
             </div>
-            <div class="col-md-1">
-              <input id="poemOrderId" class="orderInput"/>
+            <div class="col-md-4">
+              <input id="filmImage" />
             </div>
-        <div class="row">
-          <div class="col-md-2">
-            <p>Poem Date</p>
           </div>
-          <div class="col-md-4">
-            <input id="poemDate"/>
+  
+          <div class="row">
+            <button id="submitFilm" class="submitPoem">Submit</button>
           </div>
-          <div class="col-md-2">
-            <p>Additional Info</p>
-          </div>
-          <div class="col-md-4">
-            <input id="poemAdditionalInfo" />
-          </div>
-        </div>
-            
-        <p>Text</p>
-        <textarea id="poemText" class="poemText"></textarea>
-        
-        <div class="row">
-          <button id="submitPoem" class="submitPoem">Submit</button>
-        </div>
         </div>
       </form>
-      <div class="row" id="poems">
+      <div class="row" id="films">
 
       </div>
     </div>
@@ -69,7 +148,7 @@
   src="https://code.jquery.com/jquery-3.6.0.min.js"
   integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
   crossorigin="anonymous"></script>
-    <script src="./js/allpoems.js"></script>
+    <script src="./js/allfilms.js"></script>
     <!-- Option 2: Separate Popper and Bootstrap JS -->
     <!--
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js" integrity="sha384-SR1sx49pcuLnqZUnnPwx6FCym0wLsk5JZuNx2bPPENzswTNFaQU1RDvt3wT4gWFG" crossorigin="anonymous"></script>

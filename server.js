@@ -154,3 +154,46 @@ app.delete("/poems/delete/:id", async (req, res) => {
   .then(result => console.log(`Record id ${result._id} deleted`))
   .catch(err => console.log(err))
 })
+
+
+//////FILMS ////////
+//films page route
+app.get("/films/", (req, res) => {
+  const token = req.cookies.token
+  if (!token) {
+    res.send(401)
+  } else {
+    res.sendFile(__dirname + '/public/pages/allfilms.html')
+  }
+})
+//create film
+app.post("/films/create/", (req, res) => {
+  try {
+    const film = { 
+      title: req.body.title,
+      orderId: req.body.orderId,
+      datePosted: req.body.datePosted,
+      directedBy: req.body.directedBy,
+      summary: req.body.summary,
+      relatability: req.body.relatability,
+      relatabilityScore: req.body.relatabilityScore,
+      execution: req.body.execution,
+      executionScore: req.body.executionScore,
+      context: req.body.context,
+      contextScore: req.body.contextScore,
+      subtext: req.body.subtext,
+      subtextScore: req.body.subtextScore,
+      emotion: req.body.emotion,
+      emotionScore: req.body.emotionScore,
+      overallScore: req.body.overallScore,
+      song: req.body.song,
+      image: req.body.image
+  
+    }
+    db.Films.create(film)
+    .then(console.log("Film submitted"))
+  } catch {
+    res.status(201).send();
+  }
+  
+});
