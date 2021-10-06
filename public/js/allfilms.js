@@ -21,6 +21,7 @@ $(document).ready(function(){
                 subtextScore: $("#subtextScore").val(),
                 emotion: $("#emotion").val(),
                 emotionScore: $("#emotionScore").val(),
+                overallScore: $("#overallScore").val(),
                 song: $("#filmSong").val(),
                 image: $("#filmImage").val()
             },
@@ -66,13 +67,13 @@ $(document).ready(function(){
                     `)
             }
 
-            // $(".edit").on("click", function(e) {
-            //     e.preventDefault();
-            //     let id = $(this).data("id")
-            //     console.log(id)
-            //     window.location.replace(`/poems/${id}`)
-            //     sessionStorage.setItem("id", id)
-            // })
+            $(".edit").on("click", function(e) {
+                e.preventDefault();
+                let id = $(this).data("id")
+                console.log(id)
+                window.location.replace(`/films/${id}`)
+                sessionStorage.setItem("id", id)
+            })
             $(".delete").on("click", function(e) {
                 e.preventDefault();
                 let id = $(this).data("id")
@@ -87,11 +88,16 @@ $(document).ready(function(){
                 })
                 window.location.reload()
             })
-            $("#poemOrderId").attr("value", result.length + 1)
+            $("#filmOrderId").attr("value", result.length + 1)
         },
         error: function(error) {
             console.log(error)
         }
+    })
+
+    $("#homeBtn").on("click", function(e) {
+        e.preventDefault();
+        window.location.replace("/home/");
     })
 
 });

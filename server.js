@@ -209,3 +209,19 @@ app.delete("/films/delete/:id", async (req, res) => {
   .then(result => console.log(`Record id ${result._id} deleted`))
   .catch(err => console.log(err))
 })
+
+//Route to Edit Film Page
+app.get("/films/:id", async (req, res) => {
+  const token = req.cookies.token
+  if (!token) {
+    res.send(401)
+  } else {
+    res.sendFile(__dirname + '/public/pages/film.html')
+  }
+})
+
+//Get film to update
+app.get("/films/update/:id", async (req, res) => {
+  await db.Films.findById(req.params.id)
+  .then(result => res.json(result))
+})
