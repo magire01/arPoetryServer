@@ -78,13 +78,23 @@ app.post("/create/profile/", async(req, res) => {
   }
 });
 
-//summary page route
-app.get("/poems/", (req, res) => {
+//poems page route
+app.get("/home/", (req, res) => {
   const token = req.cookies.token
   if (!token) {
     res.send(401)
   } else {
     res.sendFile(__dirname + '/public/pages/home.html')
+  }
+})
+
+//poems page route
+app.get("/poems/", (req, res) => {
+  const token = req.cookies.token
+  if (!token) {
+    res.send(401)
+  } else {
+    res.sendFile(__dirname + '/public/pages/allpoems.html')
   }
 })
 
