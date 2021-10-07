@@ -23,8 +23,8 @@ if (process.env.NODE_ENV === "production") {
 
 // Add routes, both API and view
 const corsOptions ={
-    origin:'http://arpoetryserver-env.eba-zpnxky2i.us-east-2.elasticbeanstalk.com/', 
-    credentials:true,            //access-control-allow-credentials:true
+    origin:true, 
+    credentials:true,   
     optionSuccessStatus:200
 }
 app.use(cors(corsOptions));
