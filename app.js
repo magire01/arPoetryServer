@@ -22,7 +22,13 @@ if (process.env.NODE_ENV === "production") {
 }
 
 // Add routes, both API and view
-app.use(cors({ origin : [ "http://localhost:3000/"]}));
+const cors = require('cors');
+const corsOptions ={
+    origin:'http://localhost:3000', 
+    credentials:true,            //access-control-allow-credentials:true
+    optionSuccessStatus:200
+}
+app.use(cors(corsOptions));
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Start the API server
