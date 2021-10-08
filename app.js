@@ -58,30 +58,17 @@ app.post("/login/", (req, res) => {
       res.cookie("token", accessToken, { maxAge: jwtExpirySeconds * 1000 })
       app.get("/poems/", (req, res) => {
         const token = req.cookies.token
-  if (!token) {
-    res.send(401)
-  } else {
-    res.sendFile(__dirname + '/public/pages/home.html')
-  }
+        if (!token) {
+          res.send(401)
+        } else {
+          res.sendFile(__dirname + '/public/pages/home.html')
+        }
       })
-      res.json({ message: "Invalid Credentials" });
+ 
+    }res.json({ message: "Invalid Credentials" });
       console.log("Invalid Credentials")
-    }
   })
 })
-
-//Create user
-app.post("/create/profile/", async(req, res) => {
-  try {
-    const salt = await bcrypt.genSalt();
-    const hashedPassword = await bcrypt.hash(req.body.password, salt);
-    const user = { user: req.body.user, password: hashedPassword }
-    db.Profile.create(user)
-    .then(console.log(user))
-  } catch {
-    res.status(201).send()
-  }
-});
 
 //poems page route
 app.get("/home/", (req, res) => {
