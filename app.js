@@ -50,7 +50,7 @@ app.post("/login/", (req, res) => {
   db.Profile.findOne({ user: req.body.user })
   .then(async user => {
     if (await bcrypt.compare(req.body.password, user.password)) {
-      const jwtExpirySeconds = 300
+      const jwtExpirySeconds = 1000
       const accessToken = jwt.sign({ user }, process.env.TOKEN_SECRET, {
       algorithm: "HS256",
       expiresIn: jwtExpirySeconds
