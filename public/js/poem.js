@@ -46,9 +46,10 @@ $(document).ready(function(){
                         orderId: $("#orderIdValue").val(),
                         datePosted: $("#datePostedValue").val(),
                         text: $("#textValue").val(),
-                        additionalInfo: $("#additionalInfo").val()
+                        additionalInfo: $("#additionalInfoValue").val()
                     }
                 })
+                window.location.reload();
             });
             $("#poemOrderId").attr("value", result.orderId)
         },
