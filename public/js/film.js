@@ -5,9 +5,6 @@ $(document).ready(function(){
         success: function(result) {
             $("#updateFilm").append(`
             <div class="container">
-            <div>
-                <button id="homeBtn">Home</button>
-            </div>
               <div class="row">
                 <h3>Films</h3>
               </div>
@@ -129,11 +126,11 @@ $(document).ready(function(){
             </form>
           </div>
             `)
-            $("#submitChange").on("click", function(e) {
+            $("#submitFilm").on("click", function(e) {
                 e.preventDefault();
                 $.ajax({
                     type: "PUT",
-                    url: `/poems/submitupdate/${result._id}`,
+                    url: `/films/submitupdate/${result._id}`,
                     data: {
                         title: $("#filmTitle").val(),
                         orderId: $("#filmOrderId").val(),
@@ -154,6 +151,7 @@ $(document).ready(function(){
                         image: $("#filmImage").val()
                     }
                 })
+                window.location.reload()
             });
             $("#filmOrderId").attr("value", result.orderId)
         },

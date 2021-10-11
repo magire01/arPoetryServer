@@ -50,7 +50,7 @@ app.post("/login/", (req, res) => {
   db.Profile.findOne({ user: req.body.user })
   .then(async user => {
     if (await bcrypt.compare(req.body.password, user.password)) {
-      const jwtExpirySeconds = 300
+      const jwtExpirySeconds = 1000
       const accessToken = jwt.sign({ user }, process.env.TOKEN_SECRET, {
       algorithm: "HS256",
       expiresIn: jwtExpirySeconds
@@ -216,4 +216,31 @@ app.get("/films/:id", async (req, res) => {
 app.get("/films/update/:id", async (req, res) => {
   await db.Films.findById(req.params.id)
   .then(result => res.json(result))
+})
+
+//Submit update Film
+app.put("/films/submitupdate/:id", async (req, res) => {
+  await db.Films.findByIdAndUpdate(req.params.id, 
+    { 
+      title: req.body.title,
+      orderId: req.body.orderId,
+      datePosted: req.body.datePosted,
+      directedBy: req.body.directedBy,
+      summary: req.body.summary,
+      relatability: req.body.relatability,
+      relatabilityScore: req.body.relatabilityScore,
+      execution: req.body.execution,
+      executionScore: req.body.executionScore,
+      context: req.body.context,
+      contextScore: req.body.contextScore,
+      subtext: req.body.subtext,
+      subtextScore: req.body.subtextScore,
+      emotion: req.body.emotion,
+      emotionScore: req.body.emotionScore,
+      overallScore: req.body.overallScore,
+      song: req.body.song,
+      image: req.body.image
+     })
+  .then(console.log(`Successfully Updated Item ${req.params.id}`))
+  .catch(err => console.log(err))
 })
